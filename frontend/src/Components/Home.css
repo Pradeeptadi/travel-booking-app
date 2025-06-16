@@ -1,0 +1,111 @@
+.home-container {
+  background-color: #f0f2f5;
+  min-height: 100vh;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.navbar {
+  background: linear-gradient(to right, #4f46e5, #6366f1);
+  color: white;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  animation: fadeIn 1s ease-in;
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+.nav-buttons button {
+  margin-left: 1rem;
+  background: none;
+  border: none;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.nav-buttons button:hover {
+  text-decoration: underline;
+  transform: scale(1.05);
+}
+
+.search-bar {
+  padding: 1rem 2rem;
+}
+
+.search-bar input {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+}
+
+.bus-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  padding: 2rem;
+}
+
+.bus-card {
+  background-color: white;
+  padding: 1.5rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s;
+}
+
+.bus-card:hover {
+  transform: translateY(-5px);
+}
+
+.bus-card h2 {
+  color: #2563eb;
+}
+
+.price {
+  color: green;
+  font-weight: bold;
+}
+
+.bus-card button {
+  margin-top: 0.8rem;
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.bus-card button:hover {
+  background-color: #1e40af;
+}
+
+.features {
+  margin: 2rem;
+  background-color: white;
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+.features h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.features ul {
+  padding-left: 1.5rem;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}

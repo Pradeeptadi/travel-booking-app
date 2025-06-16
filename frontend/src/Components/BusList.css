@@ -1,0 +1,55 @@
+.bus-container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 28px;
+  color: #333;
+}
+
+.bus-card {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.bus-title {
+  margin-bottom: 15px;
+  font-size: 20px;
+  color: #007bff;
+}
+
+.seat-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.seat {
+  padding: 10px 15px;
+  border-radius: 6px;
+  background-color: #e1f5fe;
+  color: #000;
+  font-size: 14px;
+}
+
+.seat.booked {
+  background-color: #ffcdd2;
+  text-decoration: line-through;
+  color: #c62828;
+}
+
+.seat.available {
+  background-color: #c8e6c9;
+  color: #2e7d32;
+}
