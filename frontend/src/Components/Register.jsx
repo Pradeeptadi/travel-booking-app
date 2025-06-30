@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
+const API_BASE = process.env.REACT_APP_API_BASE || 'https://travel-booking-app-ijyw.onrender.com/api/';
+
 const Register = () => {
   const [formData, setFormData] = useState({
     username: '',
@@ -18,12 +20,22 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post('http://127.0.0.1:8000/api/register/', formData);
+      const res = await axios.post(`${API_BASE}register/`, formData);
       alert('Registration successful');
       console.log(res.data);
     } catch (err) {
-      alert('Registration failed');
-      console.error(err.response.data.username || error.message);
+      if (err.response?.data) {
+        const errors = err.response.data;
+        alert(
+          errors.username?.[0] ||
+          errors.email?.[0] ||
+          errors.password?.[0] ||
+          'Registration failed'
+        );
+      } else {
+        alert('Something went wrong');
+      }
+      console.error(err);
     }
   };
 

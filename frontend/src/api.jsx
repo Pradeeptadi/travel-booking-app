@@ -1,10 +1,12 @@
 // src/api.js
 import axios from "axios";
 
+// Use env variable or fallback to Render API
 const API = axios.create({
-  baseURL: "http://127.0.0.1:8000/api/",
+  baseURL: process.env.REACT_APP_API_BASE || "https://travel-booking-app-ijyw.onrender.com/api/",
 });
 
+// Automatically attach token to every request if available
 API.interceptors.request.use((config) => {
   const token = localStorage.getItem("token");
   if (token) {

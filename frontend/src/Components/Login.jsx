@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
+const API_BASE = process.env.REACT_APP_API_BASE || 'https://travel-booking-app-ijyw.onrender.com/api/';
+
 const Login = ({ onlogin }) => {
   const [form, setForm] = useState({ username: '', password: '' });
   const [error, setError] = useState('');
@@ -14,16 +16,16 @@ const Login = ({ onlogin }) => {
     setError('');
 
     try {
-      const res = await axios.post('http://127.0.0.1:8000/api/login/', form);
-     console.log("Response data:", res.data); // Add this line for debugging
+      const res = await axios.post(`${API_BASE}login/`, form);
 
-localStorage.setItem('token', res.data.token);         // Use correct key
-localStorage.setItem('userId', res.data.user_id);      // Update as needed
+      console.log("Response data:", res.data);
 
-if (onlogin) {
-  onlogin(res.data.token, res.data.user_id);
-}
+      localStorage.setItem('token', res.data.token);
+      localStorage.setItem('userId', res.data.user_id);
 
+      if (onlogin) {
+        onlogin(res.data.token, res.data.user_id);
+      }
     } catch (err) {
       if (err.response && err.response.status === 401) {
         setError('Invalid credentials');

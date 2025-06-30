@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
+const API_BASE = process.env.REACT_APP_API_BASE || 'https://travel-booking-app-ijyw.onrender.com/api/';
+
 const Profile = () => {
   const [user, setUser] = useState(null);
 
@@ -8,14 +10,17 @@ const Profile = () => {
     const token = localStorage.getItem('token');
     if (!userId || !token) return;
 
-    fetch(`http://127.0.0.1:8000/api/user/${userId}/booking/`, {
+    fetch(`${API_BASE}user/${userId}/booking/`, {
       headers: {
         Authorization: `Token ${token}`,
       },
     })
-      .then((res) => res.json())
+      .then((res) => {
+        if (!res.ok) throw new Error('Failed to fetch user data');
+        return res.json();
+      })
       .then((data) => setUser(data))
-      .catch((err) => console.error(err));
+      .catch((err) => console.error('Error:', err));
   }, []);
 
   return (

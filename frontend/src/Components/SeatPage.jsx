@@ -3,15 +3,17 @@ import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./SeatPage.css";
 
+const API_BASE = process.env.REACT_APP_API_BASE || "https://travel-booking-app-ijyw.onrender.com/api/";
+
 const SeatPage = () => {
-  const { busId } = useParams();  // Get bus ID from URL
+  const { busId } = useParams();
   const navigate = useNavigate();
   const [bus, setBus] = useState(null);
   const [seats, setSeats] = useState([]);
   const [selectedSeats, setSelectedSeats] = useState([]);
 
   useEffect(() => {
-    axios.get(`http://127.0.0.1:8000/api/buses/${busId}/`)
+    axios.get(`${API_BASE}buses/${busId}/`)
       .then(res => {
         setBus(res.data);
         setSeats(res.data.seats || []);
@@ -21,7 +23,6 @@ const SeatPage = () => {
 
   const toggleSeat = (seat) => {
     if (seat.booked) return;
-
     setSelectedSeats((prev) =>
       prev.includes(seat)
         ? prev.filter((s) => s !== seat)

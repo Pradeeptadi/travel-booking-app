@@ -1,11 +1,27 @@
 services:
   - type: web
-    name: travel-booking-backend
+    name: travel-backend
     env: python
-    buildCommand: pip install -r requirements.txt
-    startCommand: gunicorn backend.wsgi:application
+    buildCommand: cd django && pip install -r ../requirements.txt
+    startCommand: gunicorn travelgo.wsgi:application
     envVars:
       - key: DJANGO_SETTINGS_MODULE
-        value: backend.settings
+        value: travelgo.settings
       - key: PYTHON_VERSION
         value: 3.11
+      - key: DATABASE_URL
+        fromDatabase:
+          name: travel-db
+          property: connectionString
+    buildFilter:
+      paths:
+        - django/**
+
+  - type: web
+    name: travel-frontend
+    env: static
+    buildCommand: cd frontend && npm install && npm run build
+    staticPublishPath: frontend/build
+    buildFilter:
+      paths:
+        - frontend/**

@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "./BusList.css";
+
+const API_BASE = process.env.REACT_APP_API_BASE || "https://travel-booking-app-ijyw.onrender.com/api/";
+
 const BusList = () => {
   const [buses, setBuses] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/buses/")
+    fetch(`${API_BASE}buses/`)
       .then((res) => res.json())
       .then((data) => setBuses(data))
       .catch((err) => console.error("Error fetching bus data", err));
